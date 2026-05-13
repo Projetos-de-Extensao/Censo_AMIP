@@ -513,56 +513,97 @@ class WizardManager {
                     <label for="sexo" class="required">Sexo</label>
                     <select id="sexo" name="sexo" required>
                         <option value="">Selecione...</option>
-                        <option value="M" ${data.sexo === 'M' ? 'selected' : ''}>Masculino</option>
-                        <option value="F" ${data.sexo === 'F' ? 'selected' : ''}>Feminino</option>
+                        <option value="masculino" ${data.sexo === 'masculino' ? 'selected' : ''}>Masculino</option>
+                        <option value="feminino" ${data.sexo === 'feminino' ? 'selected' : ''}>Feminino</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="joao@example.com" value="${data.email || ''}">
+                    <label for="nacionalidade" class="required">Nacionalidade</label>
+                    <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Brasileira" value="${data.nacionalidade || ''}" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone" placeholder="21987654321" value="${data.telefone || ''}">
+                    <label for="cep" class="required">CEP</label>
+                    <input type="text" id="cep" name="cep" placeholder="20000000" maxlength="8" value="${data.cep || ''}" required>
                 </div>
                 <div class="form-group">
-                    <label for="renda" class="required">Renda</label>
-                    <select id="renda" name="renda" required>
+                    <label for="num_casa" class="required">Nº da Casa</label>
+                    <input type="text" id="num_casa" name="num_casa" placeholder="123" value="${data.num_casa || ''}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="vinculo_domiciliar" class="required">Vínculo Domiciliar</label>
+                    <select id="vinculo_domiciliar" name="vinculo_domiciliar" required>
                         <option value="">Selecione...</option>
-                        <option value="Menos de 1 salario minimo" ${data.renda === 'Menos de 1 salario minimo' ? 'selected' : ''}>Menos de 1 SM</option>
-                        <option value="De 1 a 2 salarios minimos" ${data.renda === 'De 1 a 2 salarios minimos' ? 'selected' : ''}>1 a 2 SM</option>
-                        <option value="De 2 a 3 salarios minimos" ${data.renda === 'De 2 a 3 salarios minimos' ? 'selected' : ''}>2 a 3 SM</option>
-                        <option value="De 3 a 5 salarios minimos" ${data.renda === 'De 3 a 5 salarios minimos' ? 'selected' : ''}>3 a 5 SM</option>
-                        <option value="Mais de 5 salarios minimos" ${data.renda === 'Mais de 5 salarios minimos' ? 'selected' : ''}>Mais de 5 SM</option>
+                        <option value="responsavel_domicilio" ${data.vinculo_domiciliar === 'responsavel_domicilio' ? 'selected' : ''}>Responsável pelo domicílio</option>
+                        <option value="conjuge_diferente_sexo" ${data.vinculo_domiciliar === 'conjuge_diferente_sexo' ? 'selected' : ''}>Cônjuge de sexo diferente</option>
+                        <option value="filho_responsavel_e_conjuge" ${data.vinculo_domiciliar === 'filho_responsavel_e_conjuge' ? 'selected' : ''}>Filho(a)</option>
+                        <option value="outro_parente" ${data.vinculo_domiciliar === 'outro_parente' ? 'selected' : ''}>Outro parente</option>
+                        <option value="agregado" ${data.vinculo_domiciliar === 'agregado' ? 'selected' : ''}>Agregado(a)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="renda">Renda</label>
+                    <select id="renda" name="renda">
+                        <option value="">Selecione...</option>
+                        <option value="Menos de 1 salário mínimo" ${data.renda === 'Menos de 1 salário mínimo' ? 'selected' : ''}>Menos de 1 SM</option>
+                        <option value="De 1 a 2 salários mínimos" ${data.renda === 'De 1 a 2 salários mínimos' ? 'selected' : ''}>1 a 2 SM</option>
+                        <option value="De 2 a 3 salários mínimos" ${data.renda === 'De 2 a 3 salários mínimos' ? 'selected' : ''}>2 a 3 SM</option>
+                        <option value="De 3 a 4 salários mínimos" ${data.renda === 'De 3 a 4 salários mínimos' ? 'selected' : ''}>3 a 4 SM</option>
+                        <option value="De 4 a 5 salários mínimos" ${data.renda === 'De 4 a 5 salários mínimos' ? 'selected' : ''}>4 a 5 SM</option>
+                        <option value="Mais de 5 salários mínimos" ${data.renda === 'Mais de 5 salários mínimos' ? 'selected' : ''}>Mais de 5 SM</option>
                     </select>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="escolaridade" class="required">Escolaridade</label>
-                    <select id="escolaridade" name="escolaridade" required>
+                    <label for="escolaridade">Escolaridade</label>
+                    <select id="escolaridade" name="escolaridade">
                         <option value="">Selecione...</option>
                         <option value="Analfabeto" ${data.escolaridade === 'Analfabeto' ? 'selected' : ''}>Analfabeto</option>
-                        <option value="Ensino fundamental incompleto" ${data.escolaridade === 'Ensino fundamental incompleto' ? 'selected' : ''}>Fundamental Incompleto</option>
-                        <option value="Ensino fundamental completo" ${data.escolaridade === 'Ensino fundamental completo' ? 'selected' : ''}>Fundamental Completo</option>
-                        <option value="Ensino medio incompleto" ${data.escolaridade === 'Ensino medio incompleto' ? 'selected' : ''}>Médio Incompleto</option>
-                        <option value="Ensino medio completo" ${data.escolaridade === 'Ensino medio completo' ? 'selected' : ''}>Médio Completo</option>
+                        <option value="Fundamental incompleto" ${data.escolaridade === 'Fundamental incompleto' ? 'selected' : ''}>Fundamental Incompleto</option>
+                        <option value="Fundamental completo" ${data.escolaridade === 'Fundamental completo' ? 'selected' : ''}>Fundamental Completo</option>
+                        <option value="Médio incompleto" ${data.escolaridade === 'Médio incompleto' ? 'selected' : ''}>Médio Incompleto</option>
+                        <option value="Médio completo" ${data.escolaridade === 'Médio completo' ? 'selected' : ''}>Médio Completo</option>
                         <option value="Superior incompleto" ${data.escolaridade === 'Superior incompleto' ? 'selected' : ''}>Superior Incompleto</option>
                         <option value="Superior completo" ${data.escolaridade === 'Superior completo' ? 'selected' : ''}>Superior Completo</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="etnia" class="required">Etnia</label>
-                    <select id="etnia" name="etnia" required>
+                    <label for="etnia">Etnia</label>
+                    <select id="etnia" name="etnia">
                         <option value="">Selecione...</option>
                         <option value="Branca" ${data.etnia === 'Branca' ? 'selected' : ''}>Branca</option>
                         <option value="Pardo" ${data.etnia === 'Pardo' ? 'selected' : ''}>Pardo</option>
                         <option value="Preta" ${data.etnia === 'Preta' ? 'selected' : ''}>Preta</option>
                         <option value="Amarela" ${data.etnia === 'Amarela' ? 'selected' : ''}>Amarela</option>
-                        <option value="Indigena" ${data.etnia === 'Indigena' ? 'selected' : ''}>Indígena</option>
+                        <option value="Indígena" ${data.etnia === 'Indígena' ? 'selected' : ''}>Indígena</option>
                     </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="joao@example.com" value="${data.email || ''}">
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="21987654321" value="${data.telefone || ''}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="deficiencia">Possui deficiência?</label>
+                    <select id="deficiencia" name="deficiencia">
+                        <option value="false" ${data.deficiencia === false || data.deficiencia === 'false' ? 'selected' : ''}>Não</option>
+                        <option value="true" ${data.deficiencia === true || data.deficiencia === 'true' ? 'selected' : ''}>Sim</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="num_dependentes">Nº de Dependentes</label>
+                    <input type="number" id="num_dependentes" name="num_dependentes" min="0" value="${data.num_dependentes || 0}">
                 </div>
             </div>
         `;
@@ -589,7 +630,18 @@ class WizardManager {
             <div class="form-row">
                 <div class="form-group">
                     <label for="rua" class="required">Rua</label>
-                    <input type="text" id="rua" name="rua" placeholder="Rua das Flores" value="${data.rua || ''}" required>
+                    <select id="rua" name="rua" required>
+                        <option value="">Selecione...</option>
+                        <option value="R. Marina do Sol" ${data.rua === 'R. Marina do Sol' ? 'selected' : ''}>R. Marina do Sol</option>
+                        <option value="R. Marina do Frade" ${data.rua === 'R. Marina do Frade' ? 'selected' : ''}>R. Marina do Frade</option>
+                        <option value="R. Marina dos Coqueiros" ${data.rua === 'R. Marina dos Coqueiros' ? 'selected' : ''}>R. Marina dos Coqueiros</option>
+                        <option value="R. Marina da Lua" ${data.rua === 'R. Marina da Lua' ? 'selected' : ''}>R. Marina da Lua</option>
+                        <option value="R. Marina do Bosque" ${data.rua === 'R. Marina do Bosque' ? 'selected' : ''}>R. Marina do Bosque</option>
+                        <option value="R. Marina Porto Bali" ${data.rua === 'R. Marina Porto Bali' ? 'selected' : ''}>R. Marina Porto Bali</option>
+                        <option value="R. Marina das Flores" ${data.rua === 'R. Marina das Flores' ? 'selected' : ''}>R. Marina das Flores</option>
+                        <option value="R. Marina das Estrelas" ${data.rua === 'R. Marina das Estrelas' ? 'selected' : ''}>R. Marina das Estrelas</option>
+                        <option value="R. Marina Ponta Leste" ${data.rua === 'R. Marina Ponta Leste' ? 'selected' : ''}>R. Marina Ponta Leste</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="numero" class="required">Número</label>
@@ -598,30 +650,110 @@ class WizardManager {
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="cep">CEP</label>
-                    <input type="text" id="cep" name="cep" placeholder="20000-000" value="${data.cep || ''}">
+                    <label for="setor" class="required">Setor</label>
+                    <input type="text" id="setor" name="setor" placeholder="Setor A" value="${data.setor || ''}" required>
                 </div>
-                <div class="form-group">
-                    <label for="setor">Setor</label>
-                    <input type="text" id="setor" name="setor" placeholder="Setor A" value="${data.setor || ''}">
-                </div>
-            </div>
-            <div class="form-row">
                 <div class="form-group">
                     <label for="tipo" class="required">Tipo de Imóvel</label>
                     <select id="tipo" name="tipo" required>
                         <option value="">Selecione...</option>
                         <option value="Casa" ${data.tipo === 'Casa' ? 'selected' : ''}>Casa</option>
                         <option value="Apartamento" ${data.tipo === 'Apartamento' ? 'selected' : ''}>Apartamento</option>
-                        <option value="Cortico" ${data.tipo === 'Cortico' ? 'selected' : ''}>Cortiço</option>
+                        <option value="Outro" ${data.tipo === 'Outro' ? 'selected' : ''}>Outro</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="condicao_imovel" class="required">Condição do Imóvel</label>
+                    <select id="condicao_imovel" name="condicao_imovel" required>
+                        <option value="">Selecione...</option>
+                        <option value="ainda_pagando" ${data.condicao_imovel === 'ainda_pagando' ? 'selected' : ''}>Ainda pagando</option>
+                        <option value="alugado" ${data.condicao_imovel === 'alugado' ? 'selected' : ''}>Alugado</option>
+                        <option value="ja_pago_herdado_ou_ganho" ${data.condicao_imovel === 'ja_pago_herdado_ou_ganho' ? 'selected' : ''}>Já pago/herdado/ganho</option>
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="quantidade_comodos" class="required">Quantidade de Cômodos</label>
+                    <input type="number" id="quantidade_comodos" name="quantidade_comodos" min="1" value="${data.quantidade_comodos || 1}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="abastecimento_agua" class="required">Abastecimento de Água</label>
+                    <select id="abastecimento_agua" name="abastecimento_agua" required>
+                        <option value="">Selecione...</option>
+                        <option value="Rede geral de distribuição" ${data.abastecimento_agua === 'Rede geral de distribuição' ? 'selected' : ''}>Rede geral de distribuição</option>
+                        <option value="Poço artesiano" ${data.abastecimento_agua === 'Poço artesiano' ? 'selected' : ''}>Poço artesiano</option>
+                        <option value="Outro" ${data.abastecimento_agua === 'Outro' ? 'selected' : ''}>Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="coleta_esgoto" class="required">Coleta de Esgoto</label>
+                    <select id="coleta_esgoto" name="coleta_esgoto" required>
+                        <option value="">Selecione...</option>
+                        <option value="Rede geral de esgoto" ${data.coleta_esgoto === 'Rede geral de esgoto' ? 'selected' : ''}>Rede geral de esgoto</option>
+                        <option value="Fossa séptica" ${data.coleta_esgoto === 'Fossa séptica' ? 'selected' : ''}>Fossa séptica</option>
+                        <option value="Outro" ${data.coleta_esgoto === 'Outro' ? 'selected' : ''}>Outro</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="distribuicao_agua" class="required">Distribuição da Água</label>
+                    <select id="distribuicao_agua" name="distribuicao_agua" required>
+                        <option value="">Selecione...</option>
+                        <option value="Encanada até dentro da moradia" ${data.distribuicao_agua === 'Encanada até dentro da moradia' ? 'selected' : ''}>Dentro da moradia</option>
+                        <option value="Encanada, mas apenas terreno ou quintal" ${data.distribuicao_agua === 'Encanada, mas apenas terreno ou quintal' ? 'selected' : ''}>Terreno/quintal</option>
+                        <option value="Não encanada" ${data.distribuicao_agua === 'Não encanada' ? 'selected' : ''}>Não encanada</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lixo_destino" class="required">Destino do Lixo</label>
+                    <select id="lixo_destino" name="lixo_destino" required>
+                        <option value="">Selecione...</option>
+                        <option value="Coletado pela prefeitura" ${data.lixo_destino === 'Coletado pela prefeitura' ? 'selected' : ''}>Coletado pela prefeitura</option>
+                        <option value="Queimado" ${data.lixo_destino === 'Queimado' ? 'selected' : ''}>Queimado</option>
+                        <option value="Outro" ${data.lixo_destino === 'Outro' ? 'selected' : ''}>Outro</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
                     <label for="energia_eletrica">Energia Elétrica</label>
                     <select id="energia_eletrica" name="energia_eletrica">
-                        <option value="">Selecione...</option>
                         <option value="true" ${data.energia_eletrica === 'true' || data.energia_eletrica === true ? 'selected' : ''}>Sim</option>
                         <option value="false" ${data.energia_eletrica === 'false' || data.energia_eletrica === false ? 'selected' : ''}>Não</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="acesso_internet">Acesso à Internet</label>
+                    <select id="acesso_internet" name="acesso_internet">
+                        <option value="true" ${data.acesso_internet === 'true' || data.acesso_internet === true ? 'selected' : ''}>Sim</option>
+                        <option value="false" ${data.acesso_internet === 'false' || data.acesso_internet === false ? 'selected' : ''}>Não</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="quem_respondeu_nome" class="required">Nome de Quem Respondeu</label>
+                    <input type="text" id="quem_respondeu_nome" name="quem_respondeu_nome" value="${data.quem_respondeu_nome || ''}" required>
+                </div>
+                <div class="form-group">
+                    <label for="quem_respondeu_email" class="required">Email de Quem Respondeu</label>
+                    <input type="email" id="quem_respondeu_email" name="quem_respondeu_email" value="${data.quem_respondeu_email || ''}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="quem_respondeu_telefone" class="required">Telefone de Quem Respondeu</label>
+                    <input type="tel" id="quem_respondeu_telefone" name="quem_respondeu_telefone" value="${data.quem_respondeu_telefone || ''}" required>
+                </div>
+                <div class="form-group">
+                    <label for="chega_conexao_internet">Chega conexão de internet?</label>
+                    <select id="chega_conexao_internet" name="chega_conexao_internet">
+                        <option value="true" ${data.chega_conexao_internet === 'true' || data.chega_conexao_internet === true ? 'selected' : ''}>Sim</option>
+                        <option value="false" ${data.chega_conexao_internet === 'false' || data.chega_conexao_internet === false ? 'selected' : ''}>Não</option>
                     </select>
                 </div>
             </div>
@@ -709,15 +841,21 @@ class WizardManager {
             btnPrev.addEventListener('click', () => this.prevStep());
         }
 
-        if (btnSubmit) {
+        if (wizardForm) {
             wizardForm.addEventListener('submit', (e) => this.submitForm(e));
+        }
+
+        if (btnSubmit) {
+            btnSubmit.addEventListener('click', () => {
+                wizardForm?.requestSubmit();
+            });
         }
     }
 
     /**
      * Vai para o próximo passo
      */
-    nextStep() {
+    static nextStep() {
         if (this.validateStep()) {
             this.saveStepData();
             this.currentStep++;
@@ -728,7 +866,7 @@ class WizardManager {
     /**
      * Volta para o passo anterior
      */
-    prevStep() {
+    static prevStep() {
         if (this.currentStep > 1) {
             this.currentStep--;
             this.renderWizard();
@@ -738,7 +876,7 @@ class WizardManager {
     /**
      * Valida passo atual
      */
-    validateStep() {
+    static validateStep() {
         const form = document.getElementById('wizard-form');
         if (!form) return true;
 
@@ -749,16 +887,55 @@ class WizardManager {
                 return false;
             }
         }
+        if (this.currentStep === 1) {
+            const cpfField = form.querySelector('[name="cpf"]');
+            const cepField = form.querySelector('[name="cep"]');
+            const cpf = cpfField ? cpfField.value.replace(/\D/g, '') : '';
+            const cep = cepField ? cepField.value.replace(/\D/g, '') : '';
+
+            if (!/^\d{11}$/.test(cpf)) {
+                UiManager.showToast('CPF deve conter exatamente 11 dígitos numéricos', 'warning');
+                return false;
+            }
+
+            if (!/^\d{8}$/.test(cep)) {
+                UiManager.showToast('CEP deve conter exatamente 8 dígitos numéricos', 'warning');
+                return false;
+            }
+        }
+
         return true;
     }
 
     /**
      * Salva dados do passo atual
      */
-    saveStepData() {
+    static saveStepData() {
         const form = document.getElementById('wizard-form');
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
+
+        ['deficiencia', 'energia_eletrica', 'acesso_internet', 'chega_conexao_internet', 'tem_maquina_lavar'].forEach((fieldName) => {
+            if (fieldName in data) {
+                data[fieldName] = data[fieldName] === 'true';
+            }
+        });
+
+        if ('cpf' in data) {
+            data.cpf = data.cpf.replace(/\D/g, '');
+        }
+
+        if ('cep' in data) {
+            data.cep = data.cep.replace(/\D/g, '');
+        }
+
+        if ('num_dependentes' in data) {
+            data.num_dependentes = Number(data.num_dependentes || 0);
+        }
+
+        if ('quantidade_comodos' in data) {
+            data.quantidade_comodos = Number(data.quantidade_comodos || 0);
+        }
 
         if (this.currentStep === 1) {
             StateManager.setWizardData('morador', data);
@@ -772,7 +949,7 @@ class WizardManager {
     /**
      * Submete formulário
      */
-    async submitForm(e) {
+    static async submitForm(e) {
         e.preventDefault();
         this.saveStepData();
 
@@ -782,6 +959,10 @@ class WizardManager {
             const morador = StateManager.getWizardData('morador');
             const domicilio = StateManager.getWizardData('domicilio');
             const indicador = StateManager.getWizardData('indicador');
+
+            if (!morador || !domicilio) {
+                throw new Error('Os dados obrigatórios do cadastro não foram preenchidos.');
+            }
 
             // Criar morador
             const moradorCriado = await ApiClient.createMoreador(morador);
@@ -812,6 +993,7 @@ class WizardManager {
 
         } catch (error) {
             UiManager.hideLoading();
+            UiManager.showToast(error.message || 'Erro ao salvar registro', 'error', 5000);
             if (CONFIG.DEBUG) console.error('Erro ao salvar:', error);
         }
     }
