@@ -9,8 +9,8 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# Use environment variable in production
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-0h8jwn656&$go(!j_19pz8im+nxnc!6mm=$ul=b+i^t-h5tae1')
+# Must be provided via environment variable (no hardcoded fallback)
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
