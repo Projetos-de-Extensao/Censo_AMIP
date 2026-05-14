@@ -1,17 +1,22 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0h8jwn656&$go(!j_19pz8im+nxnc!6mm=$ul=b+i^t-h5tae1'
+# Use environment variable in production
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-0h8jwn656&$go(!j_19pz8im+nxnc!6mm=$ul=b+i^t-h5tae1')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
-# Allow all hosts (for development purposes, adjust for production)
-ALLOWED_HOSTS = ['*']
+# Allow specific hosts in production
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 
 # Application definition
@@ -22,11 +27,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'censo',
+    'rest_framework',
     'corsheaders',
     'drf_yasg',
-    'rest_framework',
-    # 'rest_framework.authtoken',
+    'censo',
+    
 ]
 
 # Middleware configuration for handling CORS and security
@@ -63,25 +68,16 @@ TEMPLATES = [
 # WSGI application configuration for deploying the project on a WSGI-compatible web server
 WSGI_APPLICATION = 'projeto.wsgi.application'
 
-# REST framework configuration for token-based authentication and permission settings (commented out for now)
-# REST_FRAMEWORK = {
-#        'DEFAULT_AUTHENTICATION_CLASSES': [
-#            'rest_framework.authentication.TokenAuthentication',
-#        ],
-#        'DEFAULT_PERMISSION_CLASSES': [
-#            'rest_framework.permissions.IsAuthenticated',
-#        ],
-#    }
-
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# Use dj-database-url to handle DATABASE_URL from environment
+import dj_database_url
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -107,7 +103,9 @@ LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
-CORS_ALLOW_ALL_ORIGINS = True
+
+# CORS Configuration - Restrict to specific domains in production
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:3000').split(',')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
@@ -117,3 +115,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Security settings for production
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_SECURITY_POLICY = {
+        "default-src": ("'self'",),
+    }

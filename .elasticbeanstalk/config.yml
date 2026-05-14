@@ -6,7 +6,7 @@ environment-defaults: {}
 deploy:
   artifact: app.zip
 global:
-  application_name: catalogo-produtos
+  application_name: censo-amip
   default_platform: Python 3.12
   default_region: us-east-1
   include_gitid: yes
